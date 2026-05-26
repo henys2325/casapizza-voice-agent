@@ -1,0 +1,231 @@
+{
+  "restaurant": {
+    "name": "Casa de Pizza & Wings",
+    "address": "765 N Nellis Blvd, Suite 10, Las Vegas, NV 89110",
+    "phone": "702-200-5252",
+    "hours": "Open 7 days a week, 10 AM to 10 PM",
+    "tax_rate": 0.08375,
+    "convenience_fee": 0.03,
+    "delivery_fee": 1.99
+  },
+  "categories": {
+    "specialty_pizzas": {
+      "name": "Specialty Pizzas",
+      "sizes": ["14\"", "16\"", "18\"", "30\""],
+      "extra_topping": {"14": 2.50, "16": 3.00, "18": 3.25, "30": 5.50},
+      "items": [
+        {"name": "Cheese", "prices": {"14": 13.99, "16": 15.99, "18": 17.99, "30": 30.99}},
+        {"name": "Hawaiian", "desc": "Mozzarella, pineapple, ham", "prices": {"14": 18.99, "16": 22.99, "18": 26.99, "30": 40.99}},
+        {"name": "Vegetarian", "desc": "Mushrooms, tomatoes, green peppers, onions, black olives", "prices": {"14": 19.99, "16": 22.99, "18": 25.99, "30": 43.99}},
+        {"name": "Meatlover", "desc": "Pepperoni, sausage, meatballs, ham", "prices": {"14": 22.99, "16": 24.99, "18": 26.99, "30": 46.99}},
+        {"name": "Supreme", "desc": "Pepperoni, sausage, mushrooms, onions, black olives, green peppers", "prices": {"14": 22.99, "16": 23.99, "18": 26.99, "30": 46.99}},
+        {"name": "5-Cheese", "desc": "No sauce, garlic, ricotta, mozzarella, provolone, feta, parmesan", "prices": {"14": 21.99, "16": 24.99, "18": 26.99, "30": 47.99}},
+        {"name": "White Pizza", "desc": "No sauce, garlic, ricotta, provolone", "prices": {"14": 20.99, "16": 22.99, "18": 24.99, "30": 44.99}},
+        {"name": "Ranch", "desc": "Ranch-style sauce under mozzarella and crispy chicken", "prices": {"14": 18.99, "16": 22.99, "18": 25.99, "30": 45.99}},
+        {"name": "Greek", "desc": "Grilled chicken, black olives, green olives, fresh garlic, tomatoes, oregano & feta cheese", "prices": {"14": 19.99, "16": 22.99, "18": 25.99, "30": 45.99}},
+        {"name": "BBQ Chicken", "desc": "BBQ sauce, honey BBQ grilled chicken & red onions", "prices": {"14": 19.99, "16": 21.99, "18": 26.99, "30": 46.99}},
+        {"name": "Mexican", "desc": "Pepperoni, beef, jalapeños, onions & cilantro", "prices": {"14": 20.99, "16": 24.99, "18": 26.99, "30": 47.99}},
+        {"name": "Alfredo", "desc": "Alfredo sauce, mozzarella, mushrooms & grilled chicken", "prices": {"14": 21.99, "16": 23.99, "18": 26.99, "30": 47.99}},
+        {"name": "Italian", "desc": "Pepperoni, sausage, fresh garlic, tomatoes & artichokes", "prices": {"14": 21.99, "16": 24.99, "18": 26.99, "30": 47.99}},
+        {"name": "Buffalo", "desc": "Mild sauce, chicken fingers", "prices": {"14": 20.99, "16": 24.99, "18": 26.99, "30": 47.99}},
+        {"name": "Margherita", "desc": "Fresh mozzarella, ripe tomatoes & basil", "prices": {"14": 19.99, "16": 24.99, "18": 26.99, "30": 44.99}},
+        {"name": "Philly Steak", "desc": "Steak, mushrooms, green peppers & onions", "prices": {"14": 20.99, "16": 23.99, "18": 26.99, "30": 46.99}}
+      ]
+    },
+    "wings_fingers": {
+      "name": "Wings & Fingers",
+      "sauces": ["Mild", "Medium", "Hot", "BBQ", "Spicy BBQ", "Spicy Honey BBQ", "Teriyaki", "Spicy Teriyaki", "Garlic Parmesan", "Lemon Garlic", "Lemon Pepper", "Mango Habanero"],
+      "note": "Served with Ranch or Blue Cheese. Extra dressing $1.00 (2oz) / $2.00 (4oz). Add $2 French Fries / $3 Side Salad",
+      "casa_special_wings": {
+        "desc": "Our special recipe, pre-marinated, half way baked, finished with a light fry for a crispy touch",
+        "items": [
+          {"name": "Casa Special Wings (8)", "price": 15.99},
+          {"name": "Casa Special Wings (12)", "price": 17.99},
+          {"name": "Casa Special Wings (20)", "price": 31.99},
+          {"name": "Casa Special Wings (40)", "price": 59.99}
+        ]
+      },
+      "regular_wings": [
+        {"name": "Chicken Wings (8)", "price": 9.99},
+        {"name": "Chicken Wings (12)", "price": 14.99},
+        {"name": "Chicken Wings (20)", "price": 26.99},
+        {"name": "Chicken Wings (40)", "price": 49.99}
+      ],
+      "fingers": [
+        {"name": "Chicken Fingers (3)", "price": 6.99},
+        {"name": "Chicken Fingers (5)", "price": 11.99},
+        {"name": "Chicken Fingers (10)", "price": 19.99},
+        {"name": "Chicken Fingers (20)", "price": 38.99}
+      ]
+    },
+    "appetizers": {
+      "name": "Appetizers & Specialties",
+      "note": "Served with Ranch, Marinara, or Cocktail Sauce",
+      "items": [
+        {"name": "Cheese Bread Sticks (12)", "price": 5.99},
+        {"name": "Garlic Bread", "price": 5.99},
+        {"name": "Garlic Mozzarella Bread", "price": 9.99},
+        {"name": "Breaded Mushrooms (12)", "price": 9.99},
+        {"name": "Onion Rings (12)", "price": 9.99},
+        {"name": "Jalapeño Poppers (6)", "price": 9.99},
+        {"name": "Mozzarella Sticks (6)", "price": 9.99},
+        {"name": "Zucchini Sticks (12)", "price": 9.99},
+        {"name": "French Fries", "price": 3.99, "note": "S $3.99 M $5.99 L $6.99"},
+        {"name": "Combo Platter", "desc": "2 Mozzarella sticks, 5 Zucchini sticks, 3 Breaded mushrooms, 5 Onion rings, 2 Jalapeño poppers", "price": 16.99},
+        {"name": "Garlic Balls (20 pieces)", "price": 5.99},
+        {"name": "Cheese Quesadilla", "price": 9.99},
+        {"name": "Grilled Chicken Quesadilla", "price": 11.99},
+        {"name": "Calamari Rings with Cocktail Sauce", "price": 11.99},
+        {"name": "Popcorn Shrimp with Cocktail Sauce", "price": 11.99}
+      ]
+    },
+    "soups": {
+      "name": "Soups",
+      "note": "Served with Garlic Bread",
+      "items": [
+        {"name": "Chicken Noodle Soup", "price": 6.99},
+        {"name": "Cream of Broccoli Soup", "price": 6.99},
+        {"name": "Clam Chowder Soup", "price": 6.99}
+      ]
+    },
+    "salads": {
+      "name": "House Salads",
+      "note": "Dressings: Italian, Ranch, Bleu Cheese, Honey Mustard, Caesar, Oil & Vinegar. Avocado $2.99 / Chicken $4.99",
+      "items": [
+        {"name": "Casa Salad", "price_sm": 8.99, "price_lg": 12.99},
+        {"name": "Caesar Salad", "price_sm": 7.99, "price_lg": 10.99},
+        {"name": "Antipasto Salad", "price_sm": 12.99, "price_lg": 18.99},
+        {"name": "Egg Chef Salad", "price_sm": 12.99, "price_lg": 18.99},
+        {"name": "Crispy Chicken Salad", "price_sm": 11.99, "price_lg": 17.99},
+        {"name": "Buffalo Crispy Chicken Salad", "price_sm": 11.99, "price_lg": 17.99},
+        {"name": "Greek Salad", "price_sm": 12.99, "price_lg": 18.99}
+      ]
+    },
+    "stromboli_calzone": {
+      "name": "Stromboli & Calzone",
+      "note": "Marinara sauce on the side. Calzone: Ricotta, Mozzarella Cheese and Two Toppings of your choice. Stromboli: Pepperoni, Ham, Onions, Green Peppers",
+      "items": [
+        {"name": "Small", "price": 16.99},
+        {"name": "Medium", "price": 20.99},
+        {"name": "Large", "price": 23.99}
+      ]
+    },
+    "italian_dinners": {
+      "name": "Italian Dinners",
+      "note": "Served with 1 Garlic Bread or Small Salad. Add Chicken $4.99 / Add Extra Sauce $3.00",
+      "items": [
+        {"name": "Spaghetti Marinara", "price": 13.99},
+        {"name": "Spaghetti with Meatballs", "price": 14.99},
+        {"name": "Ravioli Marinara", "price": 12.99},
+        {"name": "Fettuccine Alfredo", "price": 14.99},
+        {"name": "Grilled Chicken Fettuccine Alfredo", "price": 17.99},
+        {"name": "Baked Meat Lasagna", "price": 16.99}
+      ]
+    },
+    "ribs": {
+      "name": "Ribs",
+      "note": "Served with Salad and French Fries",
+      "items": [
+        {"name": "Half Rack of Ribs", "price": 21.99},
+        {"name": "Full Rack of Ribs", "price": 39.99}
+      ]
+    },
+    "gyro": {
+      "name": "Gyro",
+      "note": "Comes with Pita, Lettuce, Tomatoes, Onions, and Tzatziki. Served with French. Add Feta $1.99",
+      "items": [
+        {"name": "Gyro", "price": 12.99},
+        {"name": "Grilled Chicken Gyro", "price": 11.99}
+      ]
+    },
+    "burgers": {
+      "name": "100% Angus Beef Burgers",
+      "note": "Served with Tomatoes, Onions, Pickles, Mayo, Lettuce, and French Fries",
+      "items": [
+        {"name": "Hamburger", "price": 11.99},
+        {"name": "Cheeseburger", "price": 12.99},
+        {"name": "Bacon Cheeseburger", "price": 13.99},
+        {"name": "Texas Cheeseburger", "desc": "Bacon, BBQ sauce & cheddar cheese", "price": 13.99}
+      ]
+    },
+    "hot_sandwiches": {
+      "name": "Hot Sandwiches",
+      "note": "With French Fries",
+      "items": [
+        {"name": "Philly Cheese Steak", "desc": "Mushrooms, onions, bell peppers", "price": 11.99},
+        {"name": "Philly Steak Bomb", "desc": "Mushrooms, onions, bell peppers, salami, pepperoncini or jalapeños", "price": 12.99},
+        {"name": "Crispy Chicken", "desc": "Lettuce, tomatoes, mayo", "price": 11.99},
+        {"name": "Buffalo Chicken", "price": 11.99},
+        {"name": "Chicken Parmesan", "desc": "Marinara sauce and mozzarella, parmesan", "price": 11.99},
+        {"name": "Eggplant Parmesan", "price": 11.99},
+        {"name": "Meatball Parmesan", "desc": "With marinara sauce and mozzarella, parmesan", "price": 11.99}
+      ]
+    },
+    "cold_sandwiches": {
+      "name": "Cold Sandwiches",
+      "note": "Served with Tomatoes, Onions, Pickles & Mayo, and French Fries",
+      "items": [
+        {"name": "Ham & Cheese", "price": 11.99},
+        {"name": "Ham Salami & Cheese", "price": 12.99},
+        {"name": "Turkey & Cheese", "price": 11.99}
+      ]
+    },
+    "desserts": {
+      "name": "Desserts",
+      "items": [
+        {"name": "Chocolate Cake", "price": 5.99},
+        {"name": "Tiramisu", "price": 5.99},
+        {"name": "Zeppolis", "price": 5.99},
+        {"name": "Strawberry Cheesecake", "price": 5.99},
+        {"name": "Cheesecake", "price": 5.99},
+        {"name": "Brownie", "price": 4.99},
+        {"name": "Carrot Cake", "price": 5.99},
+        {"name": "Mousse Cake", "price": 5.99}
+      ]
+    },
+    "drinks": {
+      "name": "Drinks",
+      "items": [
+        {"name": "Can Soda", "desc": "Coke, Diet Coke, Sprite, Orange Fanta, Dr. Pepper, Root Beer", "price": 1.99},
+        {"name": "2-Liter Soda", "desc": "Coke, Sprite", "price": 4.99},
+        {"name": "Bottled Water", "price": 1.99},
+        {"name": "Fountain Drink (20oz)", "price": 2.99},
+        {"name": "Fountain Drink (32oz)", "price": 3.99}
+      ]
+    },
+    "lunch_specials": {
+      "name": "Lunch Specials $11.99",
+      "note": "Available Monday-Friday 10 AM to 3 PM only",
+      "items": [
+        {"name": "Lunch Special 1", "desc": "8 Chicken Wings w/ Fries + Free Can Soda", "price": 11.99},
+        {"name": "Lunch Special 2", "desc": "3 Chicken Fingers w/ Fries + Free Can Soda", "price": 11.99},
+        {"name": "Lunch Special 3", "desc": "Lasagna w/ Garlic Bread + Free Can Soda", "price": 11.99},
+        {"name": "Lunch Special 4", "desc": "Cheeseburger w/ Fries + Free Can Soda", "price": 11.99},
+        {"name": "Lunch Special 5", "desc": "14\" Pizza (1 Topping) + 2 Can Soda", "price": 11.99},
+        {"name": "Lunch Special 6", "desc": "Any Hot or Cold Sub w/ Fries + Free Can Soda", "price": 11.99},
+        {"name": "Lunch Special 7", "desc": "Chicken Caesar Salad w/ Garlic Bread + Free Can Soda", "price": 11.99},
+        {"name": "Lunch Special 8", "desc": "Spaghetti with Meatballs w/ Garlic Bread + Free Can Soda", "price": 11.99}
+      ]
+    },
+    "combo_specials": {
+      "name": "Combo Specials",
+      "items": [
+        {"name": "Combo 1", "desc": "14\" Pizza (1 Topping) + 12 Wings + One 2-Liter Soda. Extra Topping $3 each", "price": 34.99},
+        {"name": "Combo 2", "desc": "14\" Pizza (1 Topping) + 5 Fingers + One 2-Liter Soda. Extra Topping $3 each", "price": 34.99},
+        {"name": "Combo 3", "desc": "30\" Pizza (4 Toppings) + One 2-Liter Soda. Extra Topping $3.50 each", "price": 40.99},
+        {"name": "Combo 4", "desc": "2x 16\" Pizza (2 Toppings) + One 2-Liter Soda. Extra Topping $3.50 each", "price": 43.99},
+        {"name": "Combo 5", "desc": "16\" Pizza (1 Topping) + 10 Fingers + One 2-Liter Soda", "price": 47.99},
+        {"name": "Combo 6", "desc": "16\" Pizza (1 Topping) + 20 Wings + One 2-Liter Soda", "price": 47.99},
+        {"name": "Combo 7", "desc": "16\" Pizza (2 Toppings) + 12 Wings + 8 Fingers + One 2-Liter Soda. Extra Topping $4 each", "price": 59.99},
+        {"name": "Combo 8", "desc": "30\" Pizza (2 Toppings) + 20 Wings + One 2-Liter Soda. Extra Topping $5.50 each", "price": 59.99},
+        {"name": "Combo 9", "desc": "30\" Pizza (2 Toppings) + 10 Fingers + One 2-Liter Soda. Extra Topping $5.50 each", "price": 55.99},
+        {"name": "Combo 10", "desc": "20 Wings + 10 Fingers Bucket of Fries + One 2-Liter Soda", "price": 61.99},
+        {"name": "Combo 11", "desc": "2x 16\" Pizza (2 Toppings) + 20 Wings + Two 2-Liter Soda. Extra Topping $3.50 each", "price": 73.99},
+        {"name": "Combo 12", "desc": "18\" Pizza (2 Toppings) + 20 Wings + 10 Fingers + Two 2-Liter Soda. Extra Topping $4 each", "price": 75.99},
+        {"name": "Combo 13", "desc": "30\" Pizza (1 Topping) + 40 Wings + Two 2-Liter Soda. Extra Topping $5.50 each", "price": 81.99},
+        {"name": "Combo 14", "desc": "2x 18\" Pizza (2 Toppings) + 40 Wings + Two 2-Liter Soda. Extra Topping $4 each", "price": 100.99},
+        {"name": "Combo 15", "desc": "16\" Pizza (1 Topping) + 40 Wings + 20 Fingers + Bucket of Fries + One 2-Liter Soda. Extra Topping $3.50 each", "price": 121.99}
+      ]
+    }
+  }
+}
