@@ -32,6 +32,7 @@ from sms_service import SMSService
 from authorize_service import AuthorizeService
 from order_store import OrderStore
 from sms_bot import handle_inbound_sms
+from menu_sync_service import menu_sync
 
 # ─── Logging ────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
@@ -92,15 +93,25 @@ TAX_RATE = 0.08375
 CONVENIENCE_FEE_RATE = 0.03
 DELIVERY_FEE = 1.99
 
-# ─── Load Menu ──────────────────────────────────────────────
+# ─── Load Menu (with real-time sync from web API) ───────────
 MENU_PATH = os.path.join(os.path.dirname(__file__), "menu.json")
 try:
     with open(MENU_PATH) as f:
         MENU_DATA = json.load(f)
-    logger.info("Menu loaded successfully")
+    logger.info("Fallback menu loaded from menu.json")
 except Exception as e:
     MENU_DATA = {}
-    logger.error(f"Failed to load menu: {e}")
+    logger.error(f"Failed to load fallback menu: {e}")
+
+async def get_live_menu() -> dict:
+    """Get live menu from web API (3-sec cache) or fallback to local."""
+    try:
+        live = await menu_sync.get_menu()
+        if live:
+            return live
+    except Exception as e:
+        logger.error(f"Menu sync failed: {e}")
+    return MENU_DATA
 
 # ─── Pydantic Models ────────────────────────────────────────
 class OrderItem(BaseModel):
@@ -170,7 +181,7 @@ async def health():
 # ─── Menu Endpoint ──────────────────────────────────────────
 @app.get("/menu")
 async def get_menu():
-    return MENU_DATA
+    return await get_live_menu()
 
 # ─── Vapi Tool Call Handler ─────────────────────────────────
 @app.post("/vapi/tool-call")
@@ -223,13 +234,39 @@ async def vapi_tool_call(request: Request):
 
 # ─── Tool Implementations ───────────────────────────────────
 async def tool_search_menu_item(args: dict) -> dict:
-    """Search for a menu item by name and return price."""
+    """Search for a menu item by name and return price (real-time from web API)."""
     query = args.get("item_name", "").lower().strip()
     if not query:
         return {"error": "No item name provided"}
 
+    # Try real-time search from menu_sync first
+    try:
+        live_results = await menu_sync.search_menu(query)
+        if live_results:
+            items_out = []
+            for r in live_results[:5]:
+                entry = {"name": r["name"], "category": r["category"]}
+                if r.get("price"):
+                    entry["price"] = r["price"]
+                items_out.append(entry)
+            return {"found": True, "items": items_out}
+    except Exception as e:
+        logger.error(f"Menu sync search failed: {e}")
+
+    # Fallback to local MENU_DATA
     results = []
-    for cat_key, category in MENU_DATA.get("categories", {}).items():
+    menu_data = MENU_DATA
+    categories = menu_data.get("categories", {})
+
+    # Support both dict and list format for categories
+    if isinstance(categories, dict):
+        cat_iter = categories.items()
+    elif isinstance(categories, list):
+        cat_iter = [(c.get("id", ""), c) for c in categories]
+    else:
+        cat_iter = []
+
+    for cat_key, category in cat_iter:
         items = list(category.get("items", []))
         # Handle nested items (wings) — some sub-keys are dicts with an 'items' key
         for sub_key in ["casa_special_wings", "regular_wings", "fingers"]:
@@ -248,8 +285,12 @@ async def tool_search_menu_item(args: dict) -> dict:
                 entry = {"name": item.get("name"), "category": category.get("name")}
                 if "prices" in item:
                     entry["prices"] = item["prices"]
+                elif "price_usd" in item:
+                    entry["price"] = item["price_usd"]
                 elif "price" in item:
                     entry["price"] = item["price"]
+                elif "price_cents" in item:
+                    entry["price"] = item["price_cents"] / 100
                 elif "price_sm" in item:
                     entry["price_small"] = item["price_sm"]
                     entry["price_large"] = item["price_lg"]
@@ -538,10 +579,11 @@ async def inbound_sms(request: Request, background_tasks: BackgroundTasks):
                 media_type="application/xml"
             )
 
+        live_menu = await get_live_menu()
         reply = await handle_inbound_sms(
             from_phone=from_phone,
             body=body,
-            menu_data=MENU_DATA,
+            menu_data=live_menu,
             authnet_svc=authnet_svc,
             sms_svc=sms_svc,
             order_store=order_store,

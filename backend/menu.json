@@ -4,228 +4,318 @@
     "address": "765 N Nellis Blvd, Suite 10, Las Vegas, NV 89110",
     "phone": "702-200-5252",
     "hours": "Open 7 days a week, 10 AM to 10 PM",
+    "timezone": "America/Los_Angeles",
     "tax_rate": 0.08375,
     "convenience_fee": 0.03,
     "delivery_fee": 1.99
   },
   "categories": {
-    "specialty_pizzas": {
-      "name": "Specialty Pizzas",
-      "sizes": ["14\"", "16\"", "18\"", "30\""],
-      "extra_topping": {"14": 2.50, "16": 3.00, "18": 3.25, "30": 5.50},
+    "daily_special": {
+      "name": "Daily Special",
       "items": [
-        {"name": "Cheese", "prices": {"14": 13.99, "16": 15.99, "18": 17.99, "30": 30.99}},
-        {"name": "Hawaiian", "desc": "Mozzarella, pineapple, ham", "prices": {"14": 18.99, "16": 22.99, "18": 26.99, "30": 40.99}},
-        {"name": "Vegetarian", "desc": "Mushrooms, tomatoes, green peppers, onions, black olives", "prices": {"14": 19.99, "16": 22.99, "18": 25.99, "30": 43.99}},
-        {"name": "Meatlover", "desc": "Pepperoni, sausage, meatballs, ham", "prices": {"14": 22.99, "16": 24.99, "18": 26.99, "30": 46.99}},
-        {"name": "Supreme", "desc": "Pepperoni, sausage, mushrooms, onions, black olives, green peppers", "prices": {"14": 22.99, "16": 23.99, "18": 26.99, "30": 46.99}},
-        {"name": "5-Cheese", "desc": "No sauce, garlic, ricotta, mozzarella, provolone, feta, parmesan", "prices": {"14": 21.99, "16": 24.99, "18": 26.99, "30": 47.99}},
-        {"name": "White Pizza", "desc": "No sauce, garlic, ricotta, provolone", "prices": {"14": 20.99, "16": 22.99, "18": 24.99, "30": 44.99}},
-        {"name": "Ranch", "desc": "Ranch-style sauce under mozzarella and crispy chicken", "prices": {"14": 18.99, "16": 22.99, "18": 25.99, "30": 45.99}},
-        {"name": "Greek", "desc": "Grilled chicken, black olives, green olives, fresh garlic, tomatoes, oregano & feta cheese", "prices": {"14": 19.99, "16": 22.99, "18": 25.99, "30": 45.99}},
-        {"name": "BBQ Chicken", "desc": "BBQ sauce, honey BBQ grilled chicken & red onions", "prices": {"14": 19.99, "16": 21.99, "18": 26.99, "30": 46.99}},
-        {"name": "Mexican", "desc": "Pepperoni, beef, jalapeños, onions & cilantro", "prices": {"14": 20.99, "16": 24.99, "18": 26.99, "30": 47.99}},
-        {"name": "Alfredo", "desc": "Alfredo sauce, mozzarella, mushrooms & grilled chicken", "prices": {"14": 21.99, "16": 23.99, "18": 26.99, "30": 47.99}},
-        {"name": "Italian", "desc": "Pepperoni, sausage, fresh garlic, tomatoes & artichokes", "prices": {"14": 21.99, "16": 24.99, "18": 26.99, "30": 47.99}},
-        {"name": "Buffalo", "desc": "Mild sauce, chicken fingers", "prices": {"14": 20.99, "16": 24.99, "18": 26.99, "30": 47.99}},
-        {"name": "Margherita", "desc": "Fresh mozzarella, ripe tomatoes & basil", "prices": {"14": 19.99, "16": 24.99, "18": 26.99, "30": 44.99}},
-        {"name": "Philly Steak", "desc": "Steak, mushrooms, green peppers & onions", "prices": {"14": 20.99, "16": 23.99, "18": 26.99, "30": 46.99}}
-      ]
-    },
-    "wings_fingers": {
-      "name": "Wings & Fingers",
-      "sauces": ["Mild", "Medium", "Hot", "BBQ", "Spicy BBQ", "Spicy Honey BBQ", "Teriyaki", "Spicy Teriyaki", "Garlic Parmesan", "Lemon Garlic", "Lemon Pepper", "Mango Habanero"],
-      "note": "Served with Ranch or Blue Cheese. Extra dressing $1.00 (2oz) / $2.00 (4oz). Add $2 French Fries / $3 Side Salad",
-      "casa_special_wings": {
-        "desc": "Our special recipe, pre-marinated, half way baked, finished with a light fry for a crispy touch",
-        "items": [
-          {"name": "Casa Special Wings (8)", "price": 15.99},
-          {"name": "Casa Special Wings (12)", "price": 17.99},
-          {"name": "Casa Special Wings (20)", "price": 31.99},
-          {"name": "Casa Special Wings (40)", "price": 59.99}
-        ]
-      },
-      "regular_wings": [
-        {"name": "Chicken Wings (8)", "price": 9.99},
-        {"name": "Chicken Wings (12)", "price": 14.99},
-        {"name": "Chicken Wings (20)", "price": 26.99},
-        {"name": "Chicken Wings (40)", "price": 49.99}
-      ],
-      "fingers": [
-        {"name": "Chicken Fingers (3)", "price": 6.99},
-        {"name": "Chicken Fingers (5)", "price": 11.99},
-        {"name": "Chicken Fingers (10)", "price": 19.99},
-        {"name": "Chicken Fingers (20)", "price": 38.99}
+        {"id": "DS_16PIZZA", "name": "All Day Special: 16\" Pizza + 1 Topping", "price_cents": 1099, "price_usd": 10.99, "description": "Hand-tossed 16\" pizza with cheese plus one topping of your choice. Available all day, every day.", "modifier_group_ids": ["MG_TOPPINGS_16"]}
       ]
     },
     "appetizers": {
       "name": "Appetizers & Specialties",
       "note": "Served with Ranch, Marinara, or Cocktail Sauce",
       "items": [
-        {"name": "Cheese Bread Sticks (12)", "price": 5.99},
-        {"name": "Garlic Bread", "price": 5.99},
-        {"name": "Garlic Mozzarella Bread", "price": 9.99},
-        {"name": "Breaded Mushrooms (12)", "price": 9.99},
-        {"name": "Onion Rings (12)", "price": 9.99},
-        {"name": "Jalapeño Poppers (6)", "price": 9.99},
-        {"name": "Mozzarella Sticks (6)", "price": 9.99},
-        {"name": "Zucchini Sticks (12)", "price": 9.99},
-        {"name": "French Fries", "price": 3.99, "note": "S $3.99 M $5.99 L $6.99"},
-        {"name": "Combo Platter", "desc": "2 Mozzarella sticks, 5 Zucchini sticks, 3 Breaded mushrooms, 5 Onion rings, 2 Jalapeño poppers", "price": 16.99},
-        {"name": "Garlic Balls (20 pieces)", "price": 5.99},
-        {"name": "Cheese Quesadilla", "price": 9.99},
-        {"name": "Grilled Chicken Quesadilla", "price": 11.99},
-        {"name": "Calamari Rings with Cocktail Sauce", "price": 11.99},
-        {"name": "Popcorn Shrimp with Cocktail Sauce", "price": 11.99}
+        {"id": "APP_CHEESE_BREAD", "name": "Cheese Bread Sticks (12)", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "APP_GARLIC_BREAD", "name": "Garlic Bread", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "APP_GARLIC_MOZ", "name": "Garlic Mozzarella Bread", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_MUSHROOMS", "name": "Breaded Mushrooms (12)", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_ONION_RINGS", "name": "Onion Rings (12)", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_JALAPENO", "name": "Jalapeño Poppers (6)", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_MOZ_STICKS", "name": "Mozzarella Sticks (6)", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_ZUCCHINI", "name": "Zucchini Sticks (12)", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_FRIES_S", "name": "French Fries (Small)", "price_cents": 399, "price_usd": 3.99, "modifier_group_ids": []},
+        {"id": "APP_FRIES_M", "name": "French Fries (Medium)", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "APP_FRIES_L", "name": "French Fries (Large)", "price_cents": 699, "price_usd": 6.99, "modifier_group_ids": []},
+        {"id": "APP_COMBO_PLATTER", "name": "Combo Platter", "price_cents": 1699, "price_usd": 16.99, "description": "2 Mozzarella sticks, 5 Zucchini sticks, 3 Breaded mushrooms, 5 Onion rings, 2 Jalapeño poppers", "modifier_group_ids": []},
+        {"id": "APP_GARLIC_BALLS", "name": "Garlic Balls (20 pieces)", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "APP_QUESADILLA", "name": "Cheese Quesadilla", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": []},
+        {"id": "APP_CHICKEN_QUES", "name": "Grilled Chicken Quesadilla", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "APP_CALAMARI", "name": "Calamari Rings with Cocktail Sauce", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "APP_POPCORN_SHRIMP", "name": "Popcorn Shrimp with Cocktail Sauce", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "APP_BRUSCHETTA", "name": "Bruschetta", "price_cents": 899, "price_usd": 8.99, "description": "Toasted bread with fresh tomatoes, garlic, basil and olive oil", "modifier_group_ids": []},
+        {"id": "APP_GARLIC_CHEESE", "name": "Garlic Bread with Cheese", "price_cents": 699, "price_usd": 6.99, "description": "Toasted Italian bread with garlic butter and melted mozzarella", "modifier_group_ids": []}
       ]
     },
     "soups": {
       "name": "Soups",
       "note": "Served with Garlic Bread",
       "items": [
-        {"name": "Chicken Noodle Soup", "price": 6.99},
-        {"name": "Cream of Broccoli Soup", "price": 6.99},
-        {"name": "Clam Chowder Soup", "price": 6.99}
+        {"id": "SOUP_CHICKEN", "name": "Chicken Noodle Soup", "price_cents": 699, "price_usd": 6.99, "modifier_group_ids": []},
+        {"id": "SOUP_BROCCOLI", "name": "Cream of Broccoli Soup", "price_cents": 699, "price_usd": 6.99, "modifier_group_ids": []},
+        {"id": "SOUP_CLAM", "name": "Clam Chowder Soup", "price_cents": 699, "price_usd": 6.99, "modifier_group_ids": []}
       ]
     },
     "salads": {
       "name": "House Salads",
-      "note": "Dressings: Italian, Ranch, Bleu Cheese, Honey Mustard, Caesar, Oil & Vinegar. Avocado $2.99 / Chicken $4.99",
+      "note": "Dressings: Italian, Ranch, Bleu Cheese, Honey Mustard, Caesar, Oil & Vinegar. Add Avocado $2.99 / Add Chicken $4.99",
       "items": [
-        {"name": "Casa Salad", "price_sm": 8.99, "price_lg": 12.99},
-        {"name": "Caesar Salad", "price_sm": 7.99, "price_lg": 10.99},
-        {"name": "Antipasto Salad", "price_sm": 12.99, "price_lg": 18.99},
-        {"name": "Egg Chef Salad", "price_sm": 12.99, "price_lg": 18.99},
-        {"name": "Crispy Chicken Salad", "price_sm": 11.99, "price_lg": 17.99},
-        {"name": "Buffalo Crispy Chicken Salad", "price_sm": 11.99, "price_lg": 17.99},
-        {"name": "Greek Salad", "price_sm": 12.99, "price_lg": 18.99}
+        {"id": "SAL_CASA_SM", "name": "Casa Salad (Small)", "price_cents": 899, "price_usd": 8.99, "description": "Fresh spring mix with tomatoes, cucumbers, green peppers, black olives, red onions, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_CASA_LG", "name": "Casa Salad (Large)", "price_cents": 1299, "price_usd": 12.99, "description": "Fresh spring mix with tomatoes, cucumbers, green peppers, black olives, red onions, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_CAESAR_SM", "name": "Caesar Salad (Small)", "price_cents": 799, "price_usd": 7.99, "description": "Crisp romaine topped with Parmesan cheese and crunchy croutons, served with creamy caesar dressing on the side", "modifier_group_ids": []},
+        {"id": "SAL_CAESAR_LG", "name": "Caesar Salad (Large)", "price_cents": 1099, "price_usd": 10.99, "description": "Crisp romaine topped with Parmesan cheese and crunchy croutons, served with creamy caesar dressing on the side", "modifier_group_ids": []},
+        {"id": "SAL_ANTIPASTO_SM", "name": "Antipasto Salad (Small)", "price_cents": 1299, "price_usd": 12.99, "description": "Mixed greens topped with ham, turkey, salami, mozzarella, olives, tomatoes, and Italian dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_ANTIPASTO_LG", "name": "Antipasto Salad (Large)", "price_cents": 1899, "price_usd": 18.99, "description": "Mixed greens topped with ham, turkey, salami, mozzarella, olives, tomatoes, and Italian dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_EGG_SM", "name": "Egg Chef Salad (Small)", "price_cents": 1299, "price_usd": 12.99, "description": "Fresh greens topped with sliced hard-boiled eggs, ham, turkey, cheese, tomatoes, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_EGG_LG", "name": "Egg Chef Salad (Large)", "price_cents": 1899, "price_usd": 18.99, "description": "Fresh greens topped with sliced hard-boiled eggs, ham, turkey, cheese, tomatoes, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_CRISPY_SM", "name": "Crispy Chicken Salad (Small)", "price_cents": 1199, "price_usd": 11.99, "description": "Crispy breaded chicken fingers over fresh greens with tomatoes, cheese, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_CRISPY_LG", "name": "Crispy Chicken Salad (Large)", "price_cents": 1799, "price_usd": 17.99, "description": "Crispy breaded chicken fingers over fresh greens with tomatoes, cheese, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_BUFFALO_SM", "name": "Buffalo Crispy Chicken Salad (Small)", "price_cents": 1199, "price_usd": 11.99, "description": "Crispy buffalo-style chicken fingers over fresh greens with tomatoes, cheese, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_BUFFALO_LG", "name": "Buffalo Crispy Chicken Salad (Large)", "price_cents": 1799, "price_usd": 17.99, "description": "Crispy buffalo-style chicken fingers over fresh greens with tomatoes, cheese, and your choice of dressing", "modifier_group_ids": ["MG_DRESSING"]},
+        {"id": "SAL_GREEK_SM", "name": "Greek Salad (Small)", "price_cents": 1299, "price_usd": 12.99, "description": "Crisp lettuce with tomatoes, cucumbers, red onions, olives, and feta cheese, served with greek dressing and pepperoncini", "modifier_group_ids": []},
+        {"id": "SAL_GREEK_LG", "name": "Greek Salad (Large)", "price_cents": 1899, "price_usd": 18.99, "description": "Crisp lettuce with tomatoes, cucumbers, red onions, olives, and feta cheese, served with greek dressing and pepperoncini", "modifier_group_ids": []}
+      ]
+    },
+    "specialty_pizzas": {
+      "name": "Specialty Pizzas",
+      "note": "Sizes: 14\" / 16\" / 18\" / 30\". Extra toppings: 14\"=$2.50, 16\"=$3.00, 18\"=$3.25, 30\"=$5.50",
+      "items": [
+        {"id": "PIZ_CHEESE", "name": "Cheese Pizza", "prices": {"14": 13.99, "16": 15.99, "18": 17.99, "30": 30.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_HAWAIIAN", "name": "Hawaiian Pizza", "description": "Mozzarella, pineapple, ham", "prices": {"14": 18.99, "16": 22.99, "18": 26.99, "30": 40.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_VEGETARIAN", "name": "Vegetarian Pizza", "description": "Mushrooms, tomatoes, green peppers, onions, black olives", "prices": {"14": 19.99, "16": 22.99, "18": 25.99, "30": 43.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_MEATLOVER", "name": "Meatlover Pizza", "description": "Pepperoni, sausage, meatballs, ham", "prices": {"14": 22.99, "16": 24.99, "18": 26.99, "30": 46.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_SUPREME", "name": "Supreme Pizza", "description": "Pepperoni, sausage, mushrooms, onions, black olives, green peppers", "prices": {"14": 22.99, "16": 23.99, "18": 26.99, "30": 46.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_5CHEESE", "name": "5-Cheese Pizza", "description": "No sauce, garlic, ricotta, mozzarella, provolone, feta, parmesan", "prices": {"14": 21.99, "16": 24.99, "18": 26.99, "30": 47.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_WHITE", "name": "White Pizza", "description": "No sauce, garlic, ricotta, provolone", "prices": {"14": 20.99, "16": 22.99, "18": 24.99, "30": 44.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_RANCH", "name": "Ranch Pizza", "description": "Ranch-style sauce under mozzarella and crispy chicken", "prices": {"14": 18.99, "16": 22.99, "18": 25.99, "30": 45.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_GREEK", "name": "Greek Pizza", "description": "Grilled chicken, black olives, green olives, fresh garlic, tomatoes, oregano & feta cheese", "prices": {"14": 19.99, "16": 22.99, "18": 25.99, "30": 45.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_BBQ", "name": "BBQ Chicken Pizza", "description": "BBQ sauce, honey BBQ grilled chicken & red onions", "prices": {"14": 19.99, "16": 21.99, "18": 26.99, "30": 46.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_MEXICAN", "name": "Mexican Pizza", "description": "Pepperoni, beef, jalapeños, onions & cilantro", "prices": {"14": 20.99, "16": 24.99, "18": 26.99, "30": 47.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_ALFREDO", "name": "Alfredo Pizza", "description": "Alfredo sauce, mozzarella, mushrooms & grilled chicken", "prices": {"14": 21.99, "16": 23.99, "18": 26.99, "30": 47.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_ITALIAN", "name": "Italian Pizza", "description": "Pepperoni, sausage, fresh garlic, tomatoes & artichokes", "prices": {"14": 21.99, "16": 24.99, "18": 26.99, "30": 47.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_BUFFALO", "name": "Buffalo Pizza", "description": "Mild sauce, chicken fingers", "prices": {"14": 20.99, "16": 24.99, "18": 26.99, "30": 47.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_MARGHERITA", "name": "Margherita Pizza", "description": "Fresh mozzarella, ripe tomatoes & basil", "prices": {"14": 19.99, "16": 24.99, "18": 26.99, "30": 44.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]},
+        {"id": "PIZ_PHILLY", "name": "Philly Steak Pizza", "description": "Steak, mushrooms, green peppers & onions", "prices": {"14": 20.99, "16": 23.99, "18": 26.99, "30": 46.99}, "modifier_group_ids": ["MG_PIZZA_SIZE", "MG_TOPPINGS"]}
+      ]
+    },
+    "wings_fingers": {
+      "name": "Wings & Fingers",
+      "note": "Sauces: Mild, Medium, Hot, BBQ, Spicy BBQ, Spicy Honey BBQ, Teriyaki, Spicy Teriyaki, Garlic Parmesan, Lemon Garlic, Lemon Pepper, Mango Habanero. Served with Ranch or Blue Cheese. Extra dressing $1.00 (2oz) / $2.00 (4oz). Add $2 French Fries / $3 Side Salad",
+      "items": [
+        {"id": "WNG_CASA_8", "name": "Casa Special Wings (8)", "price_cents": 1599, "price_usd": 15.99, "description": "Our special recipe, pre-marinated, half way baked, finished with a light fry for a crispy touch", "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_CASA_12", "name": "Casa Special Wings (12)", "price_cents": 1799, "price_usd": 17.99, "description": "Our special recipe, pre-marinated, half way baked, finished with a light fry for a crispy touch", "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_CASA_20", "name": "Casa Special Wings (20)", "price_cents": 3199, "price_usd": 31.99, "description": "Our special recipe, pre-marinated, half way baked, finished with a light fry for a crispy touch", "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_CASA_40", "name": "Casa Special Wings (40)", "price_cents": 5999, "price_usd": 59.99, "description": "Our special recipe, pre-marinated, half way baked, finished with a light fry for a crispy touch", "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_REG_8", "name": "Chicken Wings (8)", "price_cents": 999, "price_usd": 9.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_REG_12", "name": "Chicken Wings (12)", "price_cents": 1499, "price_usd": 14.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_REG_20", "name": "Chicken Wings (20)", "price_cents": 2699, "price_usd": 26.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "WNG_REG_40", "name": "Chicken Wings (40)", "price_cents": 4999, "price_usd": 49.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "FNG_3", "name": "Chicken Fingers (3)", "price_cents": 699, "price_usd": 6.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "FNG_5", "name": "Chicken Fingers (5)", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "FNG_10", "name": "Chicken Fingers (10)", "price_cents": 1999, "price_usd": 19.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "FNG_20", "name": "Chicken Fingers (20)", "price_cents": 3899, "price_usd": 38.99, "modifier_group_ids": ["MG_WING_SAUCE"]}
       ]
     },
     "stromboli_calzone": {
       "name": "Stromboli & Calzone",
       "note": "Marinara sauce on the side. Calzone: Ricotta, Mozzarella Cheese and Two Toppings of your choice. Stromboli: Pepperoni, Ham, Onions, Green Peppers",
       "items": [
-        {"name": "Small", "price": 16.99},
-        {"name": "Medium", "price": 20.99},
-        {"name": "Large", "price": 23.99}
+        {"id": "SC_SMALL", "name": "Stromboli/Calzone (Small)", "price_cents": 1699, "price_usd": 16.99, "modifier_group_ids": ["MG_TOPPINGS"]},
+        {"id": "SC_MEDIUM", "name": "Stromboli/Calzone (Medium)", "price_cents": 2099, "price_usd": 20.99, "modifier_group_ids": ["MG_TOPPINGS"]},
+        {"id": "SC_LARGE", "name": "Stromboli/Calzone (Large)", "price_cents": 2399, "price_usd": 23.99, "modifier_group_ids": ["MG_TOPPINGS"]}
       ]
     },
     "italian_dinners": {
       "name": "Italian Dinners",
       "note": "Served with 1 Garlic Bread or Small Salad. Add Chicken $4.99 / Add Extra Sauce $3.00",
       "items": [
-        {"name": "Spaghetti Marinara", "price": 13.99},
-        {"name": "Spaghetti with Meatballs", "price": 14.99},
-        {"name": "Ravioli Marinara", "price": 12.99},
-        {"name": "Fettuccine Alfredo", "price": 14.99},
-        {"name": "Grilled Chicken Fettuccine Alfredo", "price": 17.99},
-        {"name": "Baked Meat Lasagna", "price": 16.99}
+        {"id": "ITA_SPAG_MAR", "name": "Spaghetti Marinara", "price_cents": 1399, "price_usd": 13.99, "modifier_group_ids": []},
+        {"id": "ITA_SPAG_MEAT", "name": "Spaghetti with Meatballs", "price_cents": 1499, "price_usd": 14.99, "modifier_group_ids": []},
+        {"id": "ITA_RAVIOLI", "name": "Ravioli Marinara", "price_cents": 1299, "price_usd": 12.99, "modifier_group_ids": []},
+        {"id": "ITA_FETT", "name": "Fettuccine Alfredo", "price_cents": 1499, "price_usd": 14.99, "description": "Homemade alfredo sauce with fettuccine and parmesan. Add broccoli $2.00", "modifier_group_ids": []},
+        {"id": "ITA_FETT_CHKN", "name": "Grilled Chicken Fettuccine Alfredo", "price_cents": 1799, "price_usd": 17.99, "description": "Add broccoli $2.00", "modifier_group_ids": []},
+        {"id": "ITA_LASAGNA", "name": "Baked Meat Lasagna", "price_cents": 1699, "price_usd": 16.99, "modifier_group_ids": []}
       ]
     },
     "ribs": {
       "name": "Ribs",
       "note": "Served with Salad and French Fries",
       "items": [
-        {"name": "Half Rack of Ribs", "price": 21.99},
-        {"name": "Full Rack of Ribs", "price": 39.99}
+        {"id": "RIB_HALF", "name": "Half Rack of Ribs", "price_cents": 2199, "price_usd": 21.99, "modifier_group_ids": []},
+        {"id": "RIB_FULL", "name": "Full Rack of Ribs", "price_cents": 3999, "price_usd": 39.99, "modifier_group_ids": []}
       ]
     },
     "gyro": {
       "name": "Gyro",
-      "note": "Comes with Pita, Lettuce, Tomatoes, Onions, and Tzatziki. Served with French. Add Feta $1.99",
+      "note": "Comes with Pita, Lettuce, Tomatoes, Onions, and Tzatziki. Served with French Fries. Add Feta $1.99",
       "items": [
-        {"name": "Gyro", "price": 12.99},
-        {"name": "Grilled Chicken Gyro", "price": 11.99}
+        {"id": "GYRO_LAMB", "name": "Gyro", "price_cents": 1299, "price_usd": 12.99, "modifier_group_ids": []},
+        {"id": "GYRO_CHICKEN", "name": "Grilled Chicken Gyro", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []}
       ]
     },
     "burgers": {
       "name": "100% Angus Beef Burgers",
       "note": "Served with Tomatoes, Onions, Pickles, Mayo, Lettuce, and French Fries",
       "items": [
-        {"name": "Hamburger", "price": 11.99},
-        {"name": "Cheeseburger", "price": 12.99},
-        {"name": "Bacon Cheeseburger", "price": 13.99},
-        {"name": "Texas Cheeseburger", "desc": "Bacon, BBQ sauce & cheddar cheese", "price": 13.99}
+        {"id": "BRG_HAMBURGER", "name": "Hamburger", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "BRG_CHEESE", "name": "Cheeseburger", "price_cents": 1299, "price_usd": 12.99, "modifier_group_ids": []},
+        {"id": "BRG_BACON", "name": "Bacon Cheeseburger", "price_cents": 1399, "price_usd": 13.99, "modifier_group_ids": []},
+        {"id": "BRG_TEXAS", "name": "Texas Cheeseburger", "price_cents": 1399, "price_usd": 13.99, "description": "Bacon, BBQ sauce & cheddar cheese", "modifier_group_ids": []}
       ]
     },
     "hot_sandwiches": {
       "name": "Hot Sandwiches",
-      "note": "With French Fries",
+      "note": "All served with French Fries",
       "items": [
-        {"name": "Philly Cheese Steak", "desc": "Mushrooms, onions, bell peppers", "price": 11.99},
-        {"name": "Philly Steak Bomb", "desc": "Mushrooms, onions, bell peppers, salami, pepperoncini or jalapeños", "price": 12.99},
-        {"name": "Crispy Chicken", "desc": "Lettuce, tomatoes, mayo", "price": 11.99},
-        {"name": "Buffalo Chicken", "price": 11.99},
-        {"name": "Chicken Parmesan", "desc": "Marinara sauce and mozzarella, parmesan", "price": 11.99},
-        {"name": "Eggplant Parmesan", "price": 11.99},
-        {"name": "Meatball Parmesan", "desc": "With marinara sauce and mozzarella, parmesan", "price": 11.99}
+        {"id": "HS_PHILLY", "name": "Philly Cheese Steak", "price_cents": 1199, "price_usd": 11.99, "description": "Mushrooms, onions, bell peppers", "modifier_group_ids": []},
+        {"id": "HS_BOMB", "name": "Philly Steak Bomb", "price_cents": 1299, "price_usd": 12.99, "description": "Mushrooms, onions, bell peppers, salami, pepperoncini or jalapeños", "modifier_group_ids": []},
+        {"id": "HS_CRISPY", "name": "Crispy Chicken", "price_cents": 1199, "price_usd": 11.99, "description": "Lettuce, tomatoes, mayo", "modifier_group_ids": []},
+        {"id": "HS_BUFFALO", "name": "Buffalo Chicken", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "HS_CHKN_PARM", "name": "Chicken Parmesan", "price_cents": 1199, "price_usd": 11.99, "description": "Marinara sauce and mozzarella, parmesan", "modifier_group_ids": []},
+        {"id": "HS_EGG_PARM", "name": "Eggplant Parmesan", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "HS_MEATBALL", "name": "Meatball Parmesan", "price_cents": 1199, "price_usd": 11.99, "description": "With marinara sauce and mozzarella, parmesan", "modifier_group_ids": []}
       ]
     },
     "cold_sandwiches": {
       "name": "Cold Sandwiches",
       "note": "Served with Tomatoes, Onions, Pickles & Mayo, and French Fries",
       "items": [
-        {"name": "Ham & Cheese", "price": 11.99},
-        {"name": "Ham Salami & Cheese", "price": 12.99},
-        {"name": "Turkey & Cheese", "price": 11.99}
+        {"id": "CS_HAM", "name": "Ham & Cheese", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "CS_HAM_SALAMI", "name": "Ham Salami & Cheese", "price_cents": 1299, "price_usd": 12.99, "modifier_group_ids": []},
+        {"id": "CS_TURKEY", "name": "Turkey & Cheese", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []}
       ]
     },
     "desserts": {
       "name": "Desserts",
       "items": [
-        {"name": "Chocolate Cake", "price": 5.99},
-        {"name": "Tiramisu", "price": 5.99},
-        {"name": "Zeppolis", "price": 5.99},
-        {"name": "Strawberry Cheesecake", "price": 5.99},
-        {"name": "Cheesecake", "price": 5.99},
-        {"name": "Brownie", "price": 4.99},
-        {"name": "Carrot Cake", "price": 5.99},
-        {"name": "Mousse Cake", "price": 5.99}
+        {"id": "DES_CHOC_CAKE", "name": "Chocolate Cake", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "DES_TIRAMISU", "name": "Tiramisu", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "DES_ZEPPOLIS", "name": "Zeppolis", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "DES_STRAW_CHEESE", "name": "Strawberry Cheesecake", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "DES_CHEESECAKE", "name": "Cheesecake", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "DES_BROWNIE", "name": "Brownie", "price_cents": 499, "price_usd": 4.99, "modifier_group_ids": []},
+        {"id": "DES_CARROT", "name": "Carrot Cake", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []},
+        {"id": "DES_MOUSSE", "name": "Mousse Cake", "price_cents": 599, "price_usd": 5.99, "modifier_group_ids": []}
       ]
     },
     "drinks": {
       "name": "Drinks",
       "items": [
-        {"name": "Can Soda", "desc": "Coke, Diet Coke, Sprite, Orange Fanta, Dr. Pepper, Root Beer", "price": 1.99},
-        {"name": "2-Liter Soda", "desc": "Coke, Sprite", "price": 4.99},
-        {"name": "Bottled Water", "price": 1.99},
-        {"name": "Fountain Drink (20oz)", "price": 2.99},
-        {"name": "Fountain Drink (32oz)", "price": 3.99}
+        {"id": "DRK_CAN", "name": "Can Soda", "price_cents": 199, "price_usd": 1.99, "description": "Coke, Diet Coke, Sprite, Orange Fanta, Dr. Pepper, Root Beer", "modifier_group_ids": []},
+        {"id": "DRK_2LITER", "name": "2-Liter Soda", "price_cents": 499, "price_usd": 4.99, "description": "Coke, Sprite", "modifier_group_ids": []},
+        {"id": "DRK_WATER", "name": "Bottled Water", "price_cents": 199, "price_usd": 1.99, "modifier_group_ids": []},
+        {"id": "DRK_FOUNTAIN_20", "name": "Fountain Drink (20oz)", "price_cents": 299, "price_usd": 2.99, "description": "Coke, Diet Coke, Sprite, Fanta, Lemonade, Ice Tea, Red Gatorade, Blue Gatorade", "modifier_group_ids": []},
+        {"id": "DRK_FOUNTAIN_32", "name": "Fountain Drink (32oz)", "price_cents": 399, "price_usd": 3.99, "description": "Coke, Diet Coke, Sprite, Fanta, Lemonade, Ice Tea, Red Gatorade, Blue Gatorade", "modifier_group_ids": []}
       ]
     },
     "lunch_specials": {
       "name": "Lunch Specials $11.99",
       "note": "Available Monday-Friday 10 AM to 3 PM only",
       "items": [
-        {"name": "Lunch Special 1", "desc": "8 Chicken Wings w/ Fries + Free Can Soda", "price": 11.99},
-        {"name": "Lunch Special 2", "desc": "3 Chicken Fingers w/ Fries + Free Can Soda", "price": 11.99},
-        {"name": "Lunch Special 3", "desc": "Lasagna w/ Garlic Bread + Free Can Soda", "price": 11.99},
-        {"name": "Lunch Special 4", "desc": "Cheeseburger w/ Fries + Free Can Soda", "price": 11.99},
-        {"name": "Lunch Special 5", "desc": "14\" Pizza (1 Topping) + 2 Can Soda", "price": 11.99},
-        {"name": "Lunch Special 6", "desc": "Any Hot or Cold Sub w/ Fries + Free Can Soda", "price": 11.99},
-        {"name": "Lunch Special 7", "desc": "Chicken Caesar Salad w/ Garlic Bread + Free Can Soda", "price": 11.99},
-        {"name": "Lunch Special 8", "desc": "Spaghetti with Meatballs w/ Garlic Bread + Free Can Soda", "price": 11.99}
+        {"id": "LS_1", "name": "8 Chicken Wings w/ Fries + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "LS_2", "name": "3 Chicken Fingers w/ Fries + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "LS_3", "name": "Lasagna w/ Garlic Bread + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "LS_4", "name": "Cheeseburger w/ Fries + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "LS_5", "name": "14\" Pizza (1 Topping) + 2 Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": ["MG_TOPPINGS_14"]},
+        {"id": "LS_6", "name": "Any Hot or Cold Sub w/ Fries + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "LS_7", "name": "Chicken Caesar Salad w/ Garlic Bread + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []},
+        {"id": "LS_8", "name": "Spaghetti with Meatballs w/ Garlic Bread + Free Can Soda", "price_cents": 1199, "price_usd": 11.99, "modifier_group_ids": []}
       ]
     },
     "combo_specials": {
       "name": "Combo Specials",
       "items": [
-        {"name": "Combo 1", "desc": "14\" Pizza (1 Topping) + 12 Wings + One 2-Liter Soda. Extra Topping $3 each", "price": 34.99},
-        {"name": "Combo 2", "desc": "14\" Pizza (1 Topping) + 5 Fingers + One 2-Liter Soda. Extra Topping $3 each", "price": 34.99},
-        {"name": "Combo 3", "desc": "30\" Pizza (4 Toppings) + One 2-Liter Soda. Extra Topping $3.50 each", "price": 40.99},
-        {"name": "Combo 4", "desc": "2x 16\" Pizza (2 Toppings) + One 2-Liter Soda. Extra Topping $3.50 each", "price": 43.99},
-        {"name": "Combo 5", "desc": "16\" Pizza (1 Topping) + 10 Fingers + One 2-Liter Soda", "price": 47.99},
-        {"name": "Combo 6", "desc": "16\" Pizza (1 Topping) + 20 Wings + One 2-Liter Soda", "price": 47.99},
-        {"name": "Combo 7", "desc": "16\" Pizza (2 Toppings) + 12 Wings + 8 Fingers + One 2-Liter Soda. Extra Topping $4 each", "price": 59.99},
-        {"name": "Combo 8", "desc": "30\" Pizza (2 Toppings) + 20 Wings + One 2-Liter Soda. Extra Topping $5.50 each", "price": 59.99},
-        {"name": "Combo 9", "desc": "30\" Pizza (2 Toppings) + 10 Fingers + One 2-Liter Soda. Extra Topping $5.50 each", "price": 55.99},
-        {"name": "Combo 10", "desc": "20 Wings + 10 Fingers Bucket of Fries + One 2-Liter Soda", "price": 61.99},
-        {"name": "Combo 11", "desc": "2x 16\" Pizza (2 Toppings) + 20 Wings + Two 2-Liter Soda. Extra Topping $3.50 each", "price": 73.99},
-        {"name": "Combo 12", "desc": "18\" Pizza (2 Toppings) + 20 Wings + 10 Fingers + Two 2-Liter Soda. Extra Topping $4 each", "price": 75.99},
-        {"name": "Combo 13", "desc": "30\" Pizza (1 Topping) + 40 Wings + Two 2-Liter Soda. Extra Topping $5.50 each", "price": 81.99},
-        {"name": "Combo 14", "desc": "2x 18\" Pizza (2 Toppings) + 40 Wings + Two 2-Liter Soda. Extra Topping $4 each", "price": 100.99},
-        {"name": "Combo 15", "desc": "16\" Pizza (1 Topping) + 40 Wings + 20 Fingers + Bucket of Fries + One 2-Liter Soda. Extra Topping $3.50 each", "price": 121.99}
+        {"id": "CMB_1", "name": "Combo 1", "price_cents": 3499, "price_usd": 34.99, "description": "14\" Pizza (1 Topping) + 12 Wings + One 2-Liter Soda. Extra Topping $3 each", "modifier_group_ids": ["MG_TOPPINGS_14", "MG_WING_SAUCE"]},
+        {"id": "CMB_2", "name": "Combo 2", "price_cents": 3499, "price_usd": 34.99, "description": "14\" Pizza (1 Topping) + 5 Fingers + One 2-Liter Soda. Extra Topping $3 each", "modifier_group_ids": ["MG_TOPPINGS_14", "MG_WING_SAUCE"]},
+        {"id": "CMB_3", "name": "Combo 3", "price_cents": 4099, "price_usd": 40.99, "description": "30\" Pizza (4 Toppings) + One 2-Liter Soda. Extra Topping $3.50 each", "modifier_group_ids": ["MG_TOPPINGS_30"]},
+        {"id": "CMB_4", "name": "Combo 4", "price_cents": 4399, "price_usd": 43.99, "description": "2x 16\" Pizza (2 Toppings) + One 2-Liter Soda. Extra Topping $3.50 each", "modifier_group_ids": ["MG_TOPPINGS_16"]},
+        {"id": "CMB_5", "name": "Combo 5", "price_cents": 4799, "price_usd": 47.99, "description": "16\" Pizza (1 Topping) + 10 Fingers + One 2-Liter Soda", "modifier_group_ids": ["MG_TOPPINGS_16", "MG_WING_SAUCE"]},
+        {"id": "CMB_6", "name": "Combo 6", "price_cents": 4799, "price_usd": 47.99, "description": "16\" Pizza (1 Topping) + 20 Wings + One 2-Liter Soda", "modifier_group_ids": ["MG_TOPPINGS_16", "MG_WING_SAUCE"]},
+        {"id": "CMB_7", "name": "Combo 7", "price_cents": 5999, "price_usd": 59.99, "description": "16\" Pizza (2 Toppings) + 12 Wings + 8 Fingers + One 2-Liter Soda. Extra Topping $4 each", "modifier_group_ids": ["MG_TOPPINGS_16", "MG_WING_SAUCE"]},
+        {"id": "CMB_8", "name": "Combo 8", "price_cents": 5999, "price_usd": 59.99, "description": "30\" Pizza (2 Toppings) + 20 Wings + One 2-Liter Soda. Extra Topping $5.50 each", "modifier_group_ids": ["MG_TOPPINGS_30", "MG_WING_SAUCE"]},
+        {"id": "CMB_9", "name": "Combo 9", "price_cents": 5599, "price_usd": 55.99, "description": "30\" Pizza (2 Toppings) + 10 Fingers + One 2-Liter Soda. Extra Topping $5.50 each", "modifier_group_ids": ["MG_TOPPINGS_30", "MG_WING_SAUCE"]},
+        {"id": "CMB_10", "name": "Combo 10", "price_cents": 6199, "price_usd": 61.99, "description": "20 Wings + 10 Fingers + Bucket of Fries + One 2-Liter Soda", "modifier_group_ids": ["MG_WING_SAUCE"]},
+        {"id": "CMB_11", "name": "Combo 11", "price_cents": 7399, "price_usd": 73.99, "description": "2x 16\" Pizza (2 Toppings) + 20 Wings + Two 2-Liter Soda. Extra Topping $3.50 each", "modifier_group_ids": ["MG_TOPPINGS_16", "MG_WING_SAUCE"]},
+        {"id": "CMB_12", "name": "Combo 12", "price_cents": 7599, "price_usd": 75.99, "description": "18\" Pizza (2 Toppings) + 20 Wings + 10 Fingers + Two 2-Liter Soda. Extra Topping $4 each", "modifier_group_ids": ["MG_TOPPINGS_18", "MG_WING_SAUCE"]},
+        {"id": "CMB_13", "name": "Combo 13", "price_cents": 8199, "price_usd": 81.99, "description": "30\" Pizza (1 Topping) + 40 Wings + Two 2-Liter Soda. Extra Topping $5.50 each", "modifier_group_ids": ["MG_TOPPINGS_30", "MG_WING_SAUCE"]},
+        {"id": "CMB_14", "name": "Combo 14", "price_cents": 10099, "price_usd": 100.99, "description": "2x 18\" Pizza (2 Toppings) + 40 Wings + Two 2-Liter Soda. Extra Topping $4 each", "modifier_group_ids": ["MG_TOPPINGS_18", "MG_WING_SAUCE"]},
+        {"id": "CMB_15", "name": "Combo 15", "price_cents": 12199, "price_usd": 121.99, "description": "16\" Pizza (1 Topping) + 40 Wings + 20 Fingers + Bucket of Fries + One 2-Liter Soda. Extra Topping $3.50 each", "modifier_group_ids": ["MG_TOPPINGS_16", "MG_WING_SAUCE"]}
       ]
     }
+  },
+  "modifier_groups": {
+    "MG_PIZZA_SIZE": {
+      "name": "Pizza Size",
+      "min_required": 1,
+      "max_allowed": 1,
+      "options": [
+        {"id": "SZ_14", "name": "14\" Small", "price_cents": 0, "price_usd": 0},
+        {"id": "SZ_16", "name": "16\" Medium", "price_cents": 0, "price_usd": 0},
+        {"id": "SZ_18", "name": "18\" Large", "price_cents": 0, "price_usd": 0},
+        {"id": "SZ_30", "name": "30\" Party", "price_cents": 0, "price_usd": 0}
+      ]
+    },
+    "MG_TOPPINGS": {
+      "name": "Extra Toppings",
+      "min_required": 0,
+      "max_allowed": 10,
+      "note": "Price varies by size: 14\"=$2.50, 16\"=$3.00, 18\"=$3.25, 30\"=$5.50",
+      "options": [
+        {"id": "TOP_PEP", "name": "Pepperoni", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_CAN_BACON", "name": "Canadian Bacon", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_MUSHROOM", "name": "Mushrooms", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_ONION", "name": "Onions", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_HAM", "name": "Ham", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_BLK_OLIVE", "name": "Black Olives", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_PINEAPPLE", "name": "Pineapple", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_TOMATO", "name": "Fresh Tomatoes", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_MEATBALL", "name": "Meatballs", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_JALAPENO", "name": "Jalapeños", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_SPINACH", "name": "Spinach", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_EGGPLANT", "name": "Eggplant", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_BROCCOLI", "name": "Broccoli", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_GRN_PEPPER", "name": "Green Peppers", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_BASIL", "name": "Fresh Basil", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_GARLIC", "name": "Fresh Garlic", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_PEPPERONCINI", "name": "Pepperoncini", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_GRN_OLIVE", "name": "Green Olives", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_ARTICHOKE", "name": "Artichokes", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_CHICKEN", "name": "Chicken", "price_cents": 300, "price_usd": 3.00},
+        {"id": "TOP_ZUCCHINI", "name": "Zucchini", "price_cents": 300, "price_usd": 3.00}
+      ]
+    },
+    "MG_WING_SAUCE": {
+      "name": "Wing Sauce",
+      "min_required": 1,
+      "max_allowed": 2,
+      "options": [
+        {"id": "WS_MILD", "name": "Mild", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_MEDIUM", "name": "Medium", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_HOT", "name": "Hot", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_BBQ", "name": "BBQ", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_SPICY_BBQ", "name": "Spicy BBQ", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_HONEY_BBQ", "name": "Spicy Honey BBQ", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_TERIYAKI", "name": "Teriyaki", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_SPICY_TERI", "name": "Spicy Teriyaki", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_GARLIC_PARM", "name": "Garlic Parmesan", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_LEMON_GARLIC", "name": "Lemon Garlic", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_LEMON_PEPPER", "name": "Lemon Pepper", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_MANGO_HAB", "name": "Mango Habanero", "price_cents": 0, "price_usd": 0},
+        {"id": "WS_PLAIN", "name": "Plain (No Sauce)", "price_cents": 0, "price_usd": 0}
+      ]
+    },
+    "MG_DRESSING": {
+      "name": "Salad Dressing",
+      "min_required": 0,
+      "max_allowed": 1,
+      "options": [
+        {"id": "DR_ITALIAN", "name": "Italian", "price_cents": 0, "price_usd": 0},
+        {"id": "DR_RANCH", "name": "Ranch", "price_cents": 0, "price_usd": 0},
+        {"id": "DR_BLEU", "name": "Bleu Cheese", "price_cents": 0, "price_usd": 0},
+        {"id": "DR_HONEY", "name": "Honey Mustard", "price_cents": 0, "price_usd": 0},
+        {"id": "DR_CAESAR", "name": "Caesar", "price_cents": 0, "price_usd": 0},
+        {"id": "DR_OIL", "name": "Oil & Vinegar", "price_cents": 0, "price_usd": 0}
+      ]
+    }
+  },
+  "toppings_by_size": {
+    "14": 2.50,
+    "16": 3.00,
+    "18": 3.25,
+    "30": 5.50
   }
 }
