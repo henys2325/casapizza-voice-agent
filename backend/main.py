@@ -229,13 +229,19 @@ async def tool_search_menu_item(args: dict) -> dict:
 
     results = []
     for cat_key, category in MENU_DATA.get("categories", {}).items():
-        items = category.get("items", [])
-        # Handle nested items (wings)
+        items = list(category.get("items", []))
+        # Handle nested items (wings) — some sub-keys are dicts with an 'items' key
         for sub_key in ["casa_special_wings", "regular_wings", "fingers"]:
             if sub_key in category:
-                items += category[sub_key]
+                sub = category[sub_key]
+                if isinstance(sub, list):
+                    items += sub
+                elif isinstance(sub, dict) and "items" in sub:
+                    items += sub["items"]
 
         for item in items:
+            if not isinstance(item, dict):
+                continue
             item_name = item.get("name", "").lower()
             if query in item_name or item_name in query:
                 entry = {"name": item.get("name"), "category": category.get("name")}
