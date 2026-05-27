@@ -201,14 +201,14 @@ async def vapi_tool_call(request: Request):
 
         logger.info(f"Tool call: {fn_name} | args={json.dumps(args)[:200]}")
 
-        # Route to handler
+        # Route to handler (accept both naming conventions)
         if fn_name == "search_menu_item":
             result = await tool_search_menu_item(args)
         elif fn_name == "calculate_total":
             result = await tool_calculate_total(args)
-        elif fn_name == "submit_order_and_send_payment":
+        elif fn_name in ("submit_order_and_send_payment", "submit_order"):
             result = await tool_submit_order(args, message)
-        elif fn_name == "check_order_status":
+        elif fn_name in ("check_order_status", "get_order_status"):
             result = await tool_check_order_status(args)
         else:
             result = {"error": f"Unknown tool: {fn_name}"}
