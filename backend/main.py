@@ -31,6 +31,7 @@ from clover_service import CloverService
 from sms_service import SMSService
 from authorize_service import AuthorizeService
 from order_store import OrderStore
+from sms_bot import handle_inbound_sms
 
 # ─── Logging ────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
@@ -516,6 +517,49 @@ async def get_status():
         "orders_today": order_store.count(),
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
+
+# ─── SMS Inbound Webhook ─────────────────────────────────────
+@app.post("/webhook/sms")
+async def inbound_sms(request: Request, background_tasks: BackgroundTasks):
+    """
+    Twilio webhook for inbound SMS messages.
+    Returns TwiML XML with the bot reply.
+    """
+    from fastapi.responses import Response
+    try:
+        form = await request.form()
+        from_phone = form.get("From", "")
+        body = form.get("Body", "").strip()
+        logger.info(f"Inbound SMS from {from_phone}: '{body[:80]}'")
+
+        if not from_phone or not body:
+            return Response(
+                content='<?xml version="1.0" encoding="UTF-8"?><Response></Response>',
+                media_type="application/xml"
+            )
+
+        reply = await handle_inbound_sms(
+            from_phone=from_phone,
+            body=body,
+            menu_data=MENU_DATA,
+            authnet_svc=authnet_svc,
+            sms_svc=sms_svc,
+            order_store=order_store,
+            get_backend_url=get_backend_url,
+            background_tasks=background_tasks
+        )
+
+        reply_escaped = reply.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        twiml = f'<?xml version="1.0" encoding="UTF-8"?><Response><Message>{reply_escaped}</Message></Response>'
+        return Response(content=twiml, media_type="application/xml")
+
+    except Exception as e:
+        logger.error(f"Inbound SMS webhook error: {e}")
+        return Response(
+            content='<?xml version="1.0" encoding="UTF-8"?><Response><Message>Sorry, there was an error. Please call 702-200-5252.</Message></Response>',
+            media_type="application/xml"
+        )
+
 
 # ─── Test Endpoints ─────────────────────────────────────────
 @app.post("/test/sms")
