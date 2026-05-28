@@ -57,12 +57,16 @@ async def _keep_alive_loop():
 async def lifespan(app: FastAPI):
     task = asyncio.create_task(_keep_alive_loop())
     logger.info("Keep-alive background task started")
+    # Start nightly menu sync scheduler (11:30 PM Las Vegas time)
+    menu_sync.start_scheduler()
+    logger.info("Menu sync scheduler started (daily at 11:30 PM PST)")
     yield
     task.cancel()
     try:
         await task
     except asyncio.CancelledError:
         pass
+    await menu_sync.close()
 
 # ─── App Init ───────────────────────────────────────────────
 app = FastAPI(
@@ -104,7 +108,7 @@ except Exception as e:
     logger.error(f"Failed to load fallback menu: {e}")
 
 async def get_live_menu() -> dict:
-    """Get live menu from web API (3-sec cache) or fallback to local."""
+    """Get menu from memory (synced nightly at 11:30 PM from web API)."""
     try:
         live = await menu_sync.get_menu()
         if live:
@@ -182,6 +186,17 @@ async def health():
 @app.get("/menu")
 async def get_menu():
     return await get_live_menu()
+
+@app.get("/menu/sync-status")
+async def menu_sync_status():
+    """Check menu sync status (last sync, next sync, etc.)"""
+    return menu_sync.get_sync_status()
+
+@app.post("/menu/force-sync")
+async def menu_force_sync():
+    """Force an immediate menu sync from the web API (admin use)."""
+    result = await menu_sync.force_sync()
+    return result
 
 # ─── Vapi Tool Call Handler ─────────────────────────────────
 @app.post("/vapi/tool-call")
