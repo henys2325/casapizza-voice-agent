@@ -132,11 +132,8 @@ class AuthorizeService:
                 timeout=20
             )
             r.raise_for_status()
-            data = r.json()
-
-            # Remove BOM if present
-            if isinstance(data, str):
-                data = json.loads(data.lstrip('\ufeff'))
+            # Authorize.net returns JSON with UTF-8 BOM — strip it before parsing
+            data = json.loads(r.content.decode('utf-8-sig'))
 
             if data.get("messages", {}).get("resultCode") == "Ok":
                 token = data.get("token")
