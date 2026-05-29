@@ -207,9 +207,9 @@ async def vapi_tool_call(request: Request):
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON")
 
-    # Extract tool call info
+    # Extract tool call info — support both Vapi formats
     message = body.get("message", {})
-    tool_calls = message.get("toolCalls", [])
+    tool_calls = message.get("toolCalls") or message.get("toolCallList", [])
 
     if not tool_calls:
         return JSONResponse({"results": []})
@@ -360,16 +360,22 @@ async def tool_submit_order(args: dict, message: dict) -> dict:
     if not items_raw:
         return {"success": False, "error": "No items in order."}
 
-    # Build order items
+    # Build order items — handle both field naming conventions
+    # Vapi sends: item_name, unit_price_cents, modifier_names
+    # Legacy sends: name, unit_price, price
     items = []
     for it in items_raw:
+        name = it.get("item_name") or it.get("name", "Item")
+        modifiers = it.get("modifiers", "")
+        if not modifiers and it.get("modifier_names"):
+            modifiers = ", ".join(it["modifier_names"])
         items.append(OrderItem(
-            name=it.get("name", "Item"),
+            name=name,
             quantity=it.get("quantity", 1),
             unit_price=it.get("unit_price"),
             unit_price_cents=it.get("unit_price_cents"),
             price=it.get("price"),
-            modifiers=it.get("modifiers", ""),
+            modifiers=modifiers,
             size=it.get("size", ""),
             sauce=it.get("sauce", "")
         ))
