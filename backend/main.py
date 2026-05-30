@@ -33,6 +33,7 @@ from authorize_service import AuthorizeService
 from order_store import OrderStore
 from sms_bot import handle_inbound_sms
 from menu_sync_service import menu_sync
+from payment_service import process_payment, validate_card_data
 
 # ─── Logging ────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
@@ -207,9 +208,9 @@ async def vapi_tool_call(request: Request):
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON")
 
-    # Extract tool call info — support both Vapi formats
+    # Extract tool call info
     message = body.get("message", {})
-    tool_calls = message.get("toolCalls") or message.get("toolCallList", [])
+    tool_calls = message.get("toolCalls", [])
 
     if not tool_calls:
         return JSONResponse({"results": []})
@@ -231,12 +232,14 @@ async def vapi_tool_call(request: Request):
         # Route to handler (accept both naming conventions)
         if fn_name == "search_menu_item":
             result = await tool_search_menu_item(args)
-        elif fn_name == "calculate_total":
+        elif fn_name in ("calculate_total", "calculate_order_total"):
             result = await tool_calculate_total(args)
         elif fn_name in ("submit_order_and_send_payment", "submit_order"):
             result = await tool_submit_order(args, message)
         elif fn_name in ("check_order_status", "get_order_status"):
             result = await tool_check_order_status(args)
+        elif fn_name == "process_card_payment":
+            result = await tool_process_card_payment(args)
         else:
             result = {"error": f"Unknown tool: {fn_name}"}
 
@@ -360,22 +363,16 @@ async def tool_submit_order(args: dict, message: dict) -> dict:
     if not items_raw:
         return {"success": False, "error": "No items in order."}
 
-    # Build order items — handle both field naming conventions
-    # Vapi sends: item_name, unit_price_cents, modifier_names
-    # Legacy sends: name, unit_price, price
+    # Build order items
     items = []
     for it in items_raw:
-        name = it.get("item_name") or it.get("name", "Item")
-        modifiers = it.get("modifiers", "")
-        if not modifiers and it.get("modifier_names"):
-            modifiers = ", ".join(it["modifier_names"])
         items.append(OrderItem(
-            name=name,
+            name=it.get("name", "Item"),
             quantity=it.get("quantity", 1),
             unit_price=it.get("unit_price"),
             unit_price_cents=it.get("unit_price_cents"),
             price=it.get("price"),
-            modifiers=modifiers,
+            modifiers=it.get("modifiers", ""),
             size=it.get("size", ""),
             sauce=it.get("sauce", "")
         ))
@@ -490,6 +487,117 @@ async def tool_check_order_status(args: dict) -> dict:
             }
 
     return {"error": f"Order {order_id} not found"}
+
+# ─── DTMF Card Payment Tool ────────────────────────────────
+async def tool_process_card_payment(args: dict) -> dict:
+    """Process credit/debit card payment collected via DTMF keypad."""
+    card_number = args.get("card_number", "")
+    exp_month = args.get("exp_month", "")
+    exp_year = args.get("exp_year", "")
+    cvv = args.get("cvv", "")
+    amount_cents = args.get("amount_cents", 0)
+    customer_name = args.get("customer_name", "Customer")
+    customer_phone = args.get("customer_phone", "")
+    order_type = args.get("order_type", "pickup")
+    delivery_address = args.get("delivery_address", "")
+    items = args.get("items", [])
+    language = args.get("language", "en")
+
+    # Validate required fields
+    if not card_number or not exp_month or not exp_year or not cvv:
+        return {"success": False, "error": "Missing card data. Please collect all card details."}
+    if not amount_cents:
+        return {"success": False, "error": "Missing amount. Please calculate order total first."}
+
+    # Process payment via Authorize.net
+    payment_result = process_payment(
+        card_number=card_number,
+        exp_month=exp_month,
+        exp_year=exp_year,
+        cvv=cvv,
+        amount_cents=amount_cents,
+        customer_name=customer_name,
+        customer_phone=customer_phone,
+        order_type=order_type,
+        items=items,
+        delivery_address=delivery_address,
+        language=language
+    )
+
+    if payment_result["success"]:
+        # Payment approved — create order in Clover POS
+        order_id = str(uuid.uuid4())
+        amount_dollars = amount_cents / 100
+
+        # Build Clover items
+        clover_items = []
+        for item in items:
+            name = item.get("item_name", "Item")
+            modifiers = item.get("modifier_names", [])
+            if modifiers:
+                name += f" ({', '.join(modifiers)})"
+            clover_items.append({
+                "name": name,
+                "quantity": item.get("quantity", 1),
+                "unit_price": item.get("unit_price_cents", 0) / 100
+            })
+
+        # Create Clover order
+        clover_result = clover_svc.create_order(
+            items=clover_items,
+            order_type=order_type,
+            customer_name=customer_name,
+            note=f"PAID via phone (DTMF) | Phone: {customer_phone} | Trans: {payment_result.get('transaction_id', '')}"
+        )
+
+        # Save order record
+        order_record = {
+            "order_id": order_id,
+            "customer_name": customer_name,
+            "customer_phone": customer_phone,
+            "order_type": order_type,
+            "delivery_address": delivery_address,
+            "items": items,
+            "total_usd": amount_dollars,
+            "status": "paid",
+            "payment_method": "dtmf_card",
+            "transaction_id": payment_result.get("transaction_id", ""),
+            "auth_code": payment_result.get("auth_code", ""),
+            "card_last_four": payment_result.get("last_four", ""),
+            "clover_order_id": clover_result.get("order_id", "") if clover_result.get("success") else "",
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        order_store.save(order_record)
+
+        # Send confirmation SMS
+        if customer_phone:
+            confirm_msgs = {
+                "en": f"Casa de Pizza & Wings: Payment confirmed! ${amount_dollars:.2f} charged. Your {order_type} order is being prepared. Thank you!",
+                "es": f"Casa de Pizza & Wings: ¡Pago confirmado! ${amount_dollars:.2f} cobrado. Tu orden para {('recoger' if order_type == 'pickup' else 'entrega')} se está preparando. ¡Gracias!",
+                "ru": f"Casa de Pizza & Wings: Оплата подтверждена! ${amount_dollars:.2f}. Ваш заказ на {('самовывоз' if order_type == 'pickup' else 'доставку')} готовится. Спасибо!"
+            }
+            sms_svc.send_custom(customer_phone, confirm_msgs.get(language, confirm_msgs["en"]))
+
+        logger.info(f"✅ DTMF payment success: {order_id} | ${amount_dollars:.2f} | {customer_name}")
+
+        return {
+            "success": True,
+            "message": payment_result["message"],
+            "order_id": order_id[-8:].upper(),
+            "transaction_id": payment_result.get("transaction_id", ""),
+            "amount": f"${amount_dollars:.2f}",
+            "card_last_four": payment_result.get("last_four", ""),
+            "clover_order_created": clover_result.get("success", False),
+            "estimated_time": "20-30 minutes" if order_type == "pickup" else "35-45 minutes"
+        }
+    else:
+        # Payment failed
+        logger.warning(f"❌ DTMF payment failed: {payment_result.get('error')} | {customer_name}")
+        return {
+            "success": False,
+            "message": payment_result["message"],
+            "error": payment_result.get("error", "unknown")
+        }
 
 # ─── Vapi Webhook ───────────────────────────────────────────
 @app.post("/vapi/webhook")
